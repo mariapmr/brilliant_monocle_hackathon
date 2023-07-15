@@ -2,12 +2,18 @@ import bluetooth
 import microphone
 import time
 
+counter = 1
+
+record_start = time.time()
+
 # Loop every certain number of seconds
 while True:
-    counter = 1
-    record_start = time.time()
-    if (counter == 1 or time.ticks_diff(record_start, record_end) == 4): # Add in 4 secs
-        
+    if (counter != 1):
+        print(time.ticks_diff(record_start, record_end))
+    if (counter == 1 or time.ticks_diff(record_start, record_end) == 4):
+
+        record_start = time.time()
+
         microphone.record(seconds=4.0, bit_depth=8, sample_rate=8000)
 
         time.sleep(0.5)
